@@ -1,12 +1,20 @@
 package main.java.hibernatetuto;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class Adresse {
 
+  @Column(name = "ligne1_adr", nullable = false)
   private String ligne1;
+  @Column(name = "ligne2_adr")
   private String ligne2;
+  @Column(name = "cp_adr")
   private String cp;
+  @Column(name = "ville_adr")
   private String ville;
+  @Column(name = "ligne3_adr")
   private String ligne3;
 
   public Adresse(String ligne1, String ligne2, String cp, String ville, String ligne3) {

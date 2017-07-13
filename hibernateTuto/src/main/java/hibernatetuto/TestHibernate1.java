@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 public class TestHibernate1 {
@@ -22,7 +23,7 @@ public class TestHibernate1 {
 //        for (URL url : urls) {
 //            System.out.println(url.getFile());
 //        }
-        SessionFactory sessionFactory = new Configuration().configure("main/resources/hibernate.cfg.xml").buildSessionFactory();
+        SessionFactory sessionFactory = new AnnotationConfiguration().configure("main/resources/hibernate.cfg.xml").buildSessionFactory();
 
         Transaction transaction = null;
         int index = 6;
@@ -39,9 +40,9 @@ public class TestHibernate1 {
 
             System.out.println("La nouvelle personne a été enregistrée");
 
-        } catch (Exception e) {
+        } catch (Exception e) { //permet de voir plus précisément le problème en db
 
-           // permet de récupérer la next exception et mieux voir ce qui pose problème
+            e.printStackTrace();
             Throwable t = e;
             while (t.getCause() != null) {
                 t = t.getCause();
@@ -50,7 +51,6 @@ public class TestHibernate1 {
                 ((SQLException) t).getNextException().printStackTrace();
             }
 
-            e.printStackTrace();
             transaction.rollback();
         } finally {
             session.close();
