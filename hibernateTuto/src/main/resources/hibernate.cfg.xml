@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+         
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:postgresql://localhost/hibernatetest</property>
+        <property name="connection.username">hibernate</property>
+        <property name="connection.password">hibernate</property> <!-- must have password if we don't want connection refused-->
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="hibernate.show_sql">true</property>
+        <mapping resource="main/resources/Personne.hbm.xml"></mapping>
+        <!-- chemin du package non comme dans Personne.hbm.xml proprieté class sauf qu'ici c'est des slash et non des points
+        (main.java.hibernatetuto.Personne)
+        Selon la convention pour avoir les fichier dans le classpath java il faut:
+        Les Resource dans src/main/resources
+        les fichiers java dans src/main/java
+        -->
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,9 @@
+CREATE TABLE personnes (
+	idpersonnes				INT			NOT 	NULL,
+	prenompersonne			VARCHAR(50) 			NOT 	NULL,
+	nompersonne			VARCHAR(50) 			NOT 	NULL,
+	datenaisspersonne		TIMESTAMP(0)			NOT 	NULL,
+	PRIMARY KEY(idpersonnes)
+);
+
+INSERT INTO personnes VALUES (1,'Picol','Wasnyo','1981/09/03');

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="main.java.hibernatetuto.Personne" table="personne">
+        <id name="id" column="id" type="java.lang.Long">
+            <!--denère automatiquement un id pour le type Serial de l'id en bd-->
+            <generator class="increment" />
+        </id>
+        <property name="nom" column="nom" />
+        <property name="prenom" column="prenom" />
+        <property name="dateNais" column="datenais" />
+        <component name="adresse" class="main.java.hibernatetuto.Adresse">
+            <property name="ligne1" column="ligne1_adr" />
+            <property name="ligne2" column="ligne2_adr" />
+            <property name="cp" column="cp_adr" />
+            <property name="ville" column="ville_adr" />
+            <property name="ligne3" column="ligne3_adr" />
+        </component>
+    </class>
+</hibernate-mapping>
