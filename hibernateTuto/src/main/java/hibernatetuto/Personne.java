@@ -1,13 +1,14 @@
 package main.java.hibernatetuto;
 
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -30,7 +31,13 @@ public class Personne {
     private String prenom;
     @Column(name = "dateNais")
     private Date dateNais;
-    @Embedded
+    
+    /*OneToOne Une Personne n'a qu'une Adresse et une adresse appartient à une seule personne donc relation 1:1
+    Il y'a 2 cas unidirectionnel (on a une clé primaire (table maître) qui est référencée via une clé secondaire dans la table esclave)
+    dans cette exemple c'est le mode bidirectionnel c-à-d, l'entité esclave doit préciser un champ retour par une annotation @OneToOne et un attribut mappedBy,
+    qui doit référencer le champ qui porte la relation côté maître*/
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Adresse adresse;
 
     public Personne(String nom, String prenom, Date dateNais, Adresse adresse) {

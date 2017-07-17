@@ -35,6 +35,7 @@ public class TestHibernate1 {
                     + index, "ville" + index, "ligne3_" + index);
             Personne personne = new Personne("nom" + index, "prenom_" + index, null, adresse);
             System.out.println("PERSONNE ID IS " + personne.getId());
+            adresse.setPersonne(personne);// on doit setter en mode bidirectionnel le maître dans l'esclave avant de sauvegarder
             session.save(personne);
             transaction.commit();
 
