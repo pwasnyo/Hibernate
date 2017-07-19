@@ -27,3 +27,5 @@ CREATE TABLE adresse (
   ligne3_adr VARCHAR(80) default NULL,
   PRIMARY KEY  (id)
 ) ;
+
+ALTER TABLE personne ADD COLUMN adresse_id int NOT NULL default 0;

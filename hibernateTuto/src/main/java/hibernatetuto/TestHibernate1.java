@@ -26,7 +26,7 @@ public class TestHibernate1 {
         SessionFactory sessionFactory = new AnnotationConfiguration().configure("main/resources/hibernate.cfg.xml").buildSessionFactory();
 
         Transaction transaction = null;
-        int index = 6;
+        int index = 5;
         Session session = sessionFactory.openSession();
 
         try {
@@ -35,7 +35,6 @@ public class TestHibernate1 {
                     + index, "ville" + index, "ligne3_" + index);
             Personne personne = new Personne("nom" + index, "prenom_" + index, null, adresse);
             System.out.println("PERSONNE ID IS " + personne.getId());
-            adresse.setPersonne(personne);// on doit setter en mode bidirectionnel le maître dans l'esclave avant de sauvegarder
             session.save(personne);
             transaction.commit();
 
