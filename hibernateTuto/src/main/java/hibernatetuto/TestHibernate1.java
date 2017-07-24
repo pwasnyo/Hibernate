@@ -1,28 +1,16 @@
 package main.java.hibernatetuto;
 
-import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.cfg.Configuration;
 
 public class TestHibernate1 {
 
     public static void main(String args[]) throws Exception {
-
-//        ClassLoader cl = ClassLoader.getSystemClassLoader();
-//
-//        URL[] urls = ((URLClassLoader) cl).getURLs();
-//
-//        for (URL url : urls) {
-//            System.out.println(url.getFile());
-//        }
+        
         SessionFactory sessionFactory = new AnnotationConfiguration().configure("main/resources/hibernate.cfg.xml").buildSessionFactory();
 
         Transaction transaction = null;
@@ -31,11 +19,18 @@ public class TestHibernate1 {
 
         try {
             transaction = session.beginTransaction();
-            Adresse adresse = new Adresse("ligne1_" + index, "ligne2_" + index, "cp_"
-                    + index, "ville" + index, "ligne3_" + index);
-            Personne personne = new Personne("nom" + index, "prenom_" + index, null, adresse);
-            System.out.println("PERSONNE ID IS " + personne.getId());
-            session.save(personne);
+//            Compte c = new Compte("A12", new BigDecimal(1200));
+//            Compte c = new CompteCourant(200,"A12", new BigDecimal(1200));
+            Compte c = new CompteEpargne(new BigDecimal(2.3),"A12", new BigDecimal(1200));
+            /*
+                select * from compte;
+                 id |     dtype     | numero | solde | decouvert | taux 
+                ----+---------------+--------+-------+-----------+------
+                  1 | Compte        | A12    |  1200 |         0 |    0
+                  2 | CompteCourant | A12    |  1200 |       200 |    0
+                  3 | CompteEpargne | A12    |  1200 |         0 |  2.3
+            */
+            session.save(c);
             transaction.commit();
 
             System.out.println("La nouvelle personne a été enregistrée");

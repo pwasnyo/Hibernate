@@ -15,6 +15,9 @@
         <property name="hibernate.show_sql">true</property>
         <mapping class="main.java.hibernatetuto.Personne"></mapping>
         <mapping class="main.java.hibernatetuto.Adresse"></mapping>
+        <mapping class="main.java.hibernatetuto.Compte"></mapping>
+        <mapping class="main.java.hibernatetuto.CompteEpargne"></mapping>
+        <mapping class="main.java.hibernatetuto.CompteCourant"></mapping>
         <!-- chemin du package non comme dans Personne.hbm.xml proprieté class sauf qu'ici c'est des slash et non des points
         (main.java.hibernatetuto.Personne)
         Selon la convention pour avoir les fichier dans le classpath java il faut:
