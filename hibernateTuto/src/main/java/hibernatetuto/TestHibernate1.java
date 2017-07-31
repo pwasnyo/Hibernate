@@ -19,17 +19,25 @@ public class TestHibernate1 {
 
         try {
             transaction = session.beginTransaction();
-//            Compte c = new Compte("A12", new BigDecimal(1200));
-//            Compte c = new CompteCourant(200,"A12", new BigDecimal(1200));
+            /*Compte c = new Compte("A12", new BigDecimal(1200));
+            select * from compte;
+             id | numero | solde 
+            ----+--------+-------
+              1 | A12    |  1200*/
+            //il faut vérifier que le numéro de compte existe déjà
+            /*Compte c = new CompteCourant(200,"A12", new BigDecimal(1200));        
+            select * from compte_courant ;
+             id | numero | solde | decouvert 
+            ----+--------+-------+-----------
+              2 | A12    |  1200 |       200 */
+            
             Compte c = new CompteEpargne(new BigDecimal(2.3),"A12", new BigDecimal(1200));
             /*
-                select * from compte;
-                 id |     dtype     | numero | solde | decouvert | taux 
-                ----+---------------+--------+-------+-----------+------
-                  1 | Compte        | A12    |  1200 |         0 |    0
-                  2 | CompteCourant | A12    |  1200 |       200 |    0
-                  3 | CompteEpargne | A12    |  1200 |         0 |  2.3
-            */
+            select * from compte_epargne ;
+             id | numero | solde | taux 
+            ----+--------+-------+------
+              3 | A12    |  1200 |  2.3
+            */          
             session.save(c);
             transaction.commit();
 

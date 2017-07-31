@@ -12,13 +12,9 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "compte")
-/* InheritanceType.SINGLE_TABLE veut dire Une seule table celle de la classe parent (compte) dans 
-laquelle on enregistrera toutes les données des classes qui hériteront de la classe compte voir appel dans le main.
-InheritanceType.SINGLE_TABLE va mettre dans le champs DTYPE de la table compte (voir compte.sql) la classe avec laquelle
-on a instancié le compte sauvegardé (Compte ou CompteCourant ou encore CompteCourant)
-*/
-// Etudier les limite de la methode InheritanceType.SINGLE_TABLE avant de choisir cette technique
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE) 
+/* InheritanceType.TABLE_PER_CLASS une table par classe */
+
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) 
 public class Compte {
 
     @Id

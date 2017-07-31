@@ -1,11 +1,19 @@
 package main.java.hibernatetuto;
 
 import java.math.BigDecimal;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "compte_epargne")
+// attribut de la super classe
+@AttributeOverrides({
+    @AttributeOverride(name = "id", column = @Column(name = "id")),
+    @AttributeOverride(name = "numero", column = @Column(name = "numero")),
+    @AttributeOverride(name = "solde", column = @Column(name = "solde")) })
 public class CompteEpargne extends Compte {
     protected BigDecimal taux;
 
